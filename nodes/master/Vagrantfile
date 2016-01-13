@@ -1,0 +1,16 @@
+# Vagrantfile for Fedora 22 Atomic Host
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "f23atomic"
+
+  config.vm.provider "libvirt" do |libvirt|
+    libvirt.driver = "kvm"
+    libvirt.memory = 512 
+    libvirt.cpus = 1
+  end
+
+  config.vm.network "private_network", ip: "10.20.30.40"
+
+  config.vm.network :forwarded_port, guest: 31925, host: 8800 
+end
